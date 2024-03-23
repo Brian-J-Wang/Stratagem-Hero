@@ -1,0 +1,6 @@
+.game-view {
+    background-color: darkgray;
+    float: right;
+    width: 1000px;
+    height: fit-content;
+}
