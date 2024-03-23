@@ -1,15 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Around the US</title>
-        <link rel="shortcut icon" href="favicon.ico">
-        <link rel="stylesheet" href="./styles/style.css">
-    </head>
-    <body class="page">
-        <div class="content">
-            
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around the US</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./blocks/page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <ul class="main-navigation">
+            <li><a href="#">Stratagems</a></li>
+            <li>
+                <a href="#">Mission</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Resupply</a></li>
+                    <li><a href="#">SOS Beacon</a></li>
+                    <li><a href="#">Hellbomb</a></li>
+                    <li><a href="#">SSSD Delivery</a></li>
+                    <li><a href="#">Upload Data</a></li>
+                    <li><a href="#">Eagle Rearm</a></li>
+                    <li><a href="#">Seismic Probe</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="">Offensive: Orbital</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Orbital Precision Strike</a></li>
+                    <li><a href="#">Orbital Airburst Strike</a></li>
+                    <li><a href="#">Orbital 120MM HE Barrage</a></li>
+                    <li><a href="#">Orbital 380MM HE Barrage</a></li>
+                    <li><a href="#">Orbital Walking Barrage</a></li>
+                    <li><a href="#">Orbital Laser</a></li>
+                    <li><a href="#">Orbital Railcannon Strike</a></li>
+                    <li><a href="#">Orbital Gatling Barrage</a></li>
+                    <li><a href="#">Orbital Gas Strike</a></li>
+                    <li><a href="#">Orbital EMS Strike</a></li>
+                    <li><a href="#">Orbital Smoke Strike</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Offensive: Eagle</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Product 1</a></li>
+                    <li><a href="#">Product 2</a></li>
+                    <li><a href="#">Product 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Supply: Backpacks</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Product 1</a></li>
+                    <li><a href="#">Product 2</a></li>
+                    <li><a href="#">Product 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Supply: Support Weapons</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Product 1</a></li>
+                    <li><a href="#">Product 2</a></li>
+                    <li><a href="#">Product 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Supply: Vehicle(s)</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Product 1</a></li>
+                    <li><a href="#">Product 2</a></li>
+                    <li><a href="#">Product 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Defensive</a>
+                <ul class="sub-navigation">
+                    <li><a href="#">Product 1</a></li>
+                    <li><a href="#">Product 2</a></li>
+                    <li><a href="#">Product 3</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // select all list elements with the class 'main-navigation'
+        const navigationItems = document.querySelectorAll('.main-navigation > li');
+
+        // for each of them (i.e. for each type of stratagem)
+        navigationItems.forEach(item => {
+            // when a category is clicked on the sidebar
+            item.addEventListener('click', (event) => {
+                // stops stuff IDK what, but it works so don't touch it
+                event.preventDefault();
+
+                // collapse all sub-navigation menus
+                document.querySelectorAll('.sub-navigation').forEach(subNav => {
+                    subNav.classList.remove('active');
+                });
+
+                // if clicked item is a stratagem type, toggle active, so we can see the streaks
+                if (!event.target.closest('.sub-navigation')) {
+                    // toggle the active class for the clicked item
+                    item.classList.toggle('active');
+                }
+
+                // toggle for sub-navigation menu when associated main is clicked
+                const subNavigation = item.querySelector('.sub-navigation');
+                if (subNavigation) {
+                    subNavigation.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+
+
+</body>
 </html>
