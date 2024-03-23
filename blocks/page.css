@@ -3,6 +3,7 @@ body {
 }
 
 .sidebar {
+    position: fixed;
     width: 250px;
     background-color: #333;
     height: 100%;
