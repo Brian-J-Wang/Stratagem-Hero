@@ -3,6 +3,8 @@
     height: 80px;
     background-size: contain;
     background-repeat: no-repeat;
+
+    transition: opacity 0.10s ease-in;
 }
 
 .arrow__direction_up {
