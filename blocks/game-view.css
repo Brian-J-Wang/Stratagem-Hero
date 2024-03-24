@@ -1,6 +1,27 @@
 .game-view {
-    background-color: darkgray;
-    float: right;
-    width: 1000px;
-    height: fit-content;
+    background-color: #474747;
+    width: calc(100% - 250px);
+    height: 100%;
+    display: flex;
+}
+
+
+.game-view__content {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-view__stratagem-code {
+    display: flex;
+    flex-direction: row;
+}
+
+.game-view__input {
+    position: absolute;
+    top: -100px;
+    width: 0px;
+    height: 0px;
+
+    border-style: none;
 }

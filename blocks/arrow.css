@@ -1,0 +1,26 @@
+.arrow {
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.arrow__direction_up {
+    background-image: url("../images/arrow__direction_up.svg");
+}
+
+.arrow__direction_right {
+    background-image: url("../images/arrow__direction_right.svg");
+}
+
+.arrow__direction_down {
+    background-image: url("../images/arrow__direction_down.svg");
+}
+
+.arrow__direction_left {
+    background-image: url("../images/arrow__direction_left.svg");
+}
+
+.arrow__state_correct {
+    opacity: 50%;
+}

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Around the US</title>
+    <title>Stratagem Hero</title>
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="./blocks/page.css">
+    <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
 </head>
 <body>
     <div class="content">
@@ -87,13 +87,18 @@
             </ul>
         </div>
         <div class="game-view">
-            <input class="game-view__input">
+            <div class="game-view__content">
+                <div class="game-view__stratagem-code"></div>
+                <input class="game-view__input">
+            </div>
         </div>
     </div>
     
+    <template id="arrowTemplate">
+        <div class="arrow"></div>
+    </template>
 
-    
-
+    <script src="./scripts/game.js"></script>    
     <script>
         // select all list elements with the class 'main-navigation'
         const navigationItems = document.querySelectorAll('.main-navigation > li');
@@ -124,7 +129,5 @@
             });
         });
     </script>
-
-
 </body>
 </html>

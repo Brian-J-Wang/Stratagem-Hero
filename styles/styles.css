@@ -1,4 +1,4 @@
 @import url(../vendor/normalize.css);
-@import url(../Blocks/Body.css);
-@import url(../Blocks/content.css);
-@import url(../Blocks/game-view.css)
+@import url(../blocks/content.css);
+@import url(../blocks/game-view.css);
+@import url(../blocks/arrow.css);
