@@ -1,5 +1,16 @@
 {
-    "Resupply" : {
-        "Code": "wasd"
-    }
+    "stratagems" : [
+        {
+            "name": "resupply",
+            "type": "mission",
+            "code": "sswd",
+            "svg": "resupply.svg"
+        },
+        {
+            "name": "reinforce",
+            "type": "mission",
+            "code": "wsdaw",
+            "svg": "reinforce.svg"
+        }
+    ]
 }
