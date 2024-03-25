@@ -1,10 +1,106 @@
 {
     "stratagems" : [
         {
-            "name": "Resupply",
-            "type": "mission",
-            "code": "sswd",
-            "svg": "resupply.svg"
+            "name": "LIFT-850 Jump Pack",
+            "type": "supply: backpack",
+            "code": "swwsw",
+            "svg": ""
+        },
+        {
+            "name": "B-1 Supply Pack",
+            "type": "supply: backpack",
+            "code": "saswws",
+            "svg": ""
+        },
+        {
+            "name": "AX/LAS-5 'Guard Dog' Rover",
+            "type": "supply: backpack",
+            "code": "swawdd",
+            "svg": ""
+        },
+        {
+            "name": "SH-20 Ballistic Shield Backpack",
+            "type": "supply: backpack",
+            "code": "sasswa",
+            "svg": ""
+        },
+        {
+            "name": "AX/AR-23 'Guard Dog'",
+            "type": "supply: backpack",
+            "code": "swawds",
+            "svg": ""
+        },
+        {
+            "name": "MG-23 Machine Gun",
+            "type": "supply: support weapons",
+            "code": "saswd",
+            "svg": ""
+        },
+        {
+            "name": "APW-1 Anti-Material Rifle",
+            "type": "supply: support weapons",
+            "code": "sadws",
+            "svg": ""
+        },
+        {
+            "name": "M-105 Stalwart",
+            "type": "supply: support weapons",
+            "code": "saswwa",
+            "svg": ""
+        },
+        {
+            "name": "EAT-17 Expendable Anti-Tank",
+            "type": "supply: support weapons",
+            "code": "ssawd",
+            "svg": ""
+        },
+        {
+            "name": "GR-8 Recoilless Rifle",
+            "type": "supply: support weapons",
+            "code": "sadda",
+            "svg": ""
+        },
+        {
+            "name": "FLAM-40 Flamethrower",
+            "type": "supply: support weapons",
+            "code": "sawsw",
+            "svg": ""
+        },
+        {
+            "name": "AC-8 Autocannon",
+            "type": "supply: support weapons",
+            "code": "saswwd",
+            "svg": ""
+        },
+        {
+            "name": "RS-422 Railgun",
+            "type": "supply: support weapons",
+            "code": "sdswad",
+            "svg": ""
+        },
+        {
+            "name": "FAF-14 SPEAR Launcher",
+            "type": "supply: support weapons",
+            "code": "sswss",
+            "svg": ""
+        },
+        {
+            "name": "GL-21 Grenade Launcher",
+            "type": "supply: support weapons",
+            "code": "sawas",
+            "svg": ""
+        },
+        {
+            "name": "LAS-98 Laser Cannon",
+            "type": "supply: support weapons",
+            "code": "saswa",
+            "svg": ""
+        },
+        {
+            "name": "ARC-3 Arc Thrower",
+            "type": "supply: support weapons",
+            "code": "sdswaa",
+            "svg": ""
         },
         {
             "name": "Reinforce",
@@ -13,15 +109,75 @@
             "svg": "reinforce.svg"
         },
         {
+            "name": "SOS Beacon",
+            "type": "mission",
+            "code": "wsdw",
+            "svg": ""
+        },
+        {
+            "name": "Resupply",
+            "type": "mission",
+            "code": "sswd",
+            "svg": "resupply.svg"
+        },
+        {
             "name": "Hellbomb",
             "type": "mission",
             "code": "swaswdsw",
             "svg": ""
         },
         {
+            "name": "SSSD Delivery",
+            "type": "mission",
+            "code": "sssww",
+            "svg": ""
+        },
+        {
+            "name": "Seismic Probe",
+            "type": "mission",
+            "code": "wwadss",
+            "svg": ""
+        },
+        {
+            "name": "Upload Data",
+            "type": "mission",
+            "code": "sswww",
+            "svg": ""
+        },
+        {
+            "name": "Eagle Rearm",
+            "type": "mission",
+            "code": "wwawd",
+            "svg": ""
+        },
+        {
+            "name": "illumination Flare",
+            "type": "mission",
+            "code": "ddaa",
+            "svg": ""
+        },
+        {
+            "name": "SEAF Artillery",
+            "type": "mission",
+            "code": "dwws",
+            "svg": ""
+        },
+        {
+            "name": "Super Earth Flag",
+            "type": "mission",
+            "code": "swsw",
+            "svg": ""
+        },
+        {
             "name": "Orbital Precision Strike",
             "type": "mission",
             "code": "ddw",
+            "svg": ""
+        },
+        {
+            "name": "",
+            "type": "",
+            "code": "",
             "svg": ""
         }
     ]
