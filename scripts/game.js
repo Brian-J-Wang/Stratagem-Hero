@@ -1,65 +1,101 @@
 const gameview = document.querySelector(".game-view");
-
-let correctInput = "";
+const stratagemCards = document.querySelector(".game-view__content");
+const arrowTemplate = document.querySelector("#arrowTemplate");
+const stratagemTemplate = document.querySelector("#stratagemTemplate");
 const stratCode = gameview.querySelector(".game-view__stratagem-code");
 const stratInput = gameview.querySelector(".game-view__input");
-
-const arrowTemplate = document.querySelector("#arrowTemplate");
+const gamestate = document.querySelector(".game-view__state");
 
 const stratJson = await getStratagemJson();
+console.log(stratJson);
 async function getStratagemJson() {
     const response = await fetch("https://brian-j-wang.github.io/Stratagem-Hero/data/stratagems.json");
     const json = await response.json();
     return json;
 }
 
-let arrowList;                                                              //all arrow elements are here. Access them here to change their state.
-const stratagemIcon = gameview.querySelector(".game-view__stratagem-icon");
-const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
-getRandomStratagemFromJson();
-function getRandomStratagemFromJson() {
-    correctInput = "";
-    const stratagemID = Math.floor(Math.random() * stratJson.stratagems.length);
-    const stratagem = stratJson.stratagems[stratagemID];
-    const stratagemImage = getStratagemImage(stratagem.svg);
-    stratagemIcon.setAttribute("src", stratagemImage);
-    newCodeSequence(stratagem.code);
+const stratagemArray = [];
+const stratagemDisplayLength = 6;
+function createInitialStratagems() {
+    for (let i = 0; i < stratagemDisplayLength; i++) {
+        const stratagem = getRandomStratagemFromJson();
 
-    correctInput = stratagem.code;
+        stratagemArray.push(stratagem);
+    }
+
+    for (let i = 0; i < stratagemArray.length; i++) {
+        const cardCopy = createStratagemCard(stratagemArray[i]);
+
+        if (i != 0) {
+            const card = cardCopy.querySelector(".stratagem-card");
+            card.classList.add("stratagem-card__position_not-first");
+        }
+
+        stratagemCards.append(cardCopy);
+    }
 }
 
+function createStratagemCard(stratagemData) {
+    const copy = stratagemTemplate.content.cloneNode(true);
+    
+    const stratagemIcon = copy.querySelector(".stratagem-card__icon");
+    stratagemIcon.setAttribute("src", getStratagemImage(stratagemData.svg));
+
+    const stratagemName = copy.querySelector(".stratagem-card__name");
+    stratagemName.innerText = stratagemData.name;
+
+    const stratagemInputCode = copy.querySelector(".stratagem-card__code");
+    createCodeSequence(stratagemInputCode, stratagemData.code);
+
+    return copy;
+}
+                                                             //all arrow elements are here. Access them here to change their state.
+
+const stratagemIcon = gameview.querySelector(".game-view__stratagem-icon");
+const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
+const stratagemName = gameview.querySelector(".game-view__stratagem-name");
+function getRandomStratagemFromJson() {
+    const stratagemID = Math.floor(Math.random() * stratJson.stratagems.length);
+    return stratJson.stratagems[stratagemID];
+}
 
 function getStratagemImage(imageName) {
-    const path = stratagemImagePath.concat(imageName);
+    let path;
+    if (imageName === "") {
+        path = "../images/stratagems/stratagem-random.svg"
+    } else {
+        path = stratagemImagePath.concat(imageName);
+    }
     return path;
 }
 
-const minStratagemLength = 3;
-const maxStratagemLength = 8;
-const validCodes = ["w", "a", "s", "d"];
-function CalculateRandomCode() {
-    correctInput = "";
-    stratCode.querySelectorAll(".arrow").forEach(element => {
-        stratCode.remove(element);
-    });
-    arrowList = [];
-
-    const newStratagemLength = Math.floor(Math.random() * ((maxStratagemLength + 1) - minStratagemLength) + minStratagemLength);
-
-    for (let i = 0; i < newStratagemLength; i++) {
-        const index = Math.floor(Math.random() * 4);
-        const direction = validCodes[index];
-        correctInput = correctInput.concat(direction);
-    }
-
-    newCodeSequence(correctInput);  
+let correctInput = "";
+let arrowList = "";
+function updateGameState() {
+    correctInput = stratagemArray[0].code;
+    const card = stratagemCards.querySelector(".stratagem-card");
+    arrowList = card.querySelectorAll(".arrow");
+    console.log(arrowList);
 }
 
-function newCodeSequence(code) {
-    while (stratCode.firstChild) {
-        stratCode.removeChild(stratCode.lastChild);
-    }
+function nextCard() {
+    const firstCard = stratagemCards.querySelector(".stratagem-card");
+    firstCard.remove();
+    stratagemArray.shift();
 
+    correctInput = stratagemArray[0].code;
+    const secondCard = stratagemCards.querySelector(".stratagem-card");
+    secondCard.classList.remove("stratagem-card__position_not-first");
+    arrowList = secondCard.querySelectorAll(".arrow");
+
+    const stratagem = getRandomStratagemFromJson()
+    const newCard = createStratagemCard(stratagem);
+    newCard.querySelector(".stratagem-card").classList.add("stratagem-card__position_not-first");
+    stratagemCards.append(newCard);
+    stratagemArray.push(stratagem);
+}
+
+function createCodeSequence(parent, code) {
     for (let i = 0; i < code.length; i++) {
         const arrowCopy = arrowTemplate.content.cloneNode(true);
         const arrow = arrowCopy.querySelector(".arrow");
@@ -77,10 +113,8 @@ function newCodeSequence(code) {
         if (direction === "d") {
             arrow.classList.add("arrow__direction_right");
         }
-        stratCode.append(arrow);
+        parent.append(arrow);
     }
-
-    arrowList = stratCode.querySelectorAll(".arrow");
 }
 
 function ResetStratagemInput() {
@@ -92,20 +126,27 @@ function ResetStratagemInput() {
 }
 
 let currentArrow = 0;
-stratInput.addEventListener('keyup', function (evt) {
-
-    const keystroke = evt.key.toLowerCase();
-    if (keystroke != 'w' && keystroke != 'a' && keystroke != 's' && keystroke != 'd') {
+//keyState is used to prevent keys being held down being inputted multiple times
+const keyState = {
+    'w': false,
+    'a': false,
+    's': false,
+    'd': false
+};
+stratInput.addEventListener('keydown', function (evt) {
+    const wasd = evt.key.toLowerCase();
+    if (keyState[wasd]) {
+        evt.preventDefault();
+        return;
+    } else { 
+        keyState[wasd] = true;
+    }
+    
+    if (wasd != 'w' && wasd != 'a' && wasd != 's' && wasd != 'd') {
         evt.preventDefault();
     }
 
-    const inputLength = stratInput.value.length;
-    const codeLength = correctInput.length;
-    if (inputLength >= codeLength) {
-        evt.preventDefault();
-    }
-
-    if (keystroke === correctInput.charAt(currentArrow)) {
+    if (wasd === correctInput.charAt(currentArrow)) {
         arrowList[currentArrow].classList.add("arrow__state_correct");
         currentArrow++;
     } else {
@@ -114,10 +155,23 @@ stratInput.addEventListener('keyup', function (evt) {
 
     if (currentArrow === correctInput.length) {
         ResetStratagemInput();
-        getRandomStratagemFromJson();
+        nextCard();
     }
 });
 
-stratCode.addEventListener('click', function (evt) {
+stratInput.addEventListener('keyup', function (evt) {
+    const wasd = evt.key.toLowerCase();
+    if (wasd != 'w' && wasd != 'a' && wasd != 's' && wasd != 'd') {
+        return;
+    }
+
+    keyState[wasd] = false;
+});
+
+createInitialStratagems();
+
+gamestate.addEventListener("click", function () {
+    gamestate.classList.add("game-view__state_active");
     stratInput.focus();
+    updateGameState();
 });

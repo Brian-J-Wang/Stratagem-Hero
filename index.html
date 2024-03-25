@@ -88,18 +88,30 @@
         </div>
         <div class="game-view">
             <div class="game-view__content">
-                <img class="game-view__stratagem-icon" src="./images/stratagems/stratagem-random.svg" alt="random">
-                <div class="game-view__stratagem-code"></div>
+                <div class="game-view__state">
+                    <p class="game-view__inactive-message"> Click to begin </p>
+                </div>
                 <input class="game-view__input">
             </div>
+            
         </div>
     </div>
     
+    <template id="stratagemTemplate">
+        <div class="stratagem-card">
+            <img class="stratagem-card__icon" src="./images/stratagems/stratagem-random.svg" alt="./images/stratagems/stratagem-random.svg">
+            <div class="stratagem-card__data">
+                <h2 class="stratagem-card__name"> name </h2>
+                <div class="stratagem-card__code"></div>
+            </div>
+        </div>
+    </template>
+
     <template id="arrowTemplate">
         <div class="arrow"></div>
     </template>
 
-    <script type="module" src="./scripts/game.js"></script>    
+    <script type="module" src="./scripts/game.js"></script>
     <script>
         // select all list elements with the class 'main-navigation'
         const navigationItems = document.querySelectorAll('.main-navigation > li');

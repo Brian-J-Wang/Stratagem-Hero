@@ -1,0 +1,31 @@
+.stratagem-card {
+    display: flex;
+    margin: 10px 0px 0px 150px;
+}
+
+.stratagem-card__position_not-first {
+    opacity: 50%;
+}
+
+.stratagem-card__icon {
+    height: 100px;
+    width: 100px;
+}
+
+.stratagem-card__data {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stratagem-card__name {
+    color: white;
+    text-wrap: nowrap;
+}
+
+.stratagem-card__code {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}

@@ -5,31 +5,42 @@
     display: flex;
 }
 
-
 .game-view__content {
-    margin: auto;
+    width: 100%;
+    margin: auto 0px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-}
-
-.game-view__stratagem-icon {
-    height: 100px;
-    width: 100px;
-}
-
-.game-view__stratagem-code {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
+    position: relative;
 }
 
 .game-view__input {
     position: absolute;
-    top: -100px;
+    top: -1000px;
     width: 0px;
     height: 0px;
 
     border-style: none;
+}
+
+.game-view__state {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.game-view__state_active {
+    display: hidden;
+    visibility: hidden;
+}
+
+.game-view__inactive-message {
+    position: relative;
+    bottom: -40%;
+    color: white;
+    font-size: 80px;
+    text-align: center;
+    opacity: 100%;
 }
