@@ -1,6 +1,6 @@
 const gameview = document.querySelector(".game-view");
 
-let stratagemCode = "";
+let correctInput = "";
 const stratCode = gameview.querySelector(".game-view__stratagem-code");
 const stratInput = gameview.querySelector(".game-view__input");
 
@@ -18,29 +18,27 @@ const stratagemIcon = gameview.querySelector(".game-view__stratagem-icon");
 const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
 getRandomStratagemFromJson();
 function getRandomStratagemFromJson() {
+    correctInput = "";
     const stratagemID = Math.floor(Math.random() * stratJson.stratagems.length);
     const stratagem = stratJson.stratagems[stratagemID];
     const stratagemImage = getStratagemImage(stratagem.svg);
     stratagemIcon.setAttribute("src", stratagemImage);
+    newCodeSequence(stratagem.code);
+
+    correctInput = stratagem.code;
 }
 
 
-async function getStratagemImage(imageName) {
+function getStratagemImage(imageName) {
     const path = stratagemImagePath.concat(imageName);
-    console.log(path);
-    const image = await fetch(path);
-    return image;
+    return path;
 }
 
 const minStratagemLength = 3;
 const maxStratagemLength = 8;
 const validCodes = ["w", "a", "s", "d"];
 function CalculateRandomCode() {
-    stratagemCode = "";
-    while (stratCode.firstChild) {
-        stratCode.removeChild(stratCode.lastChild);
-    }
-
+    correctInput = "";
     stratCode.querySelectorAll(".arrow").forEach(element => {
         stratCode.remove(element);
     });
@@ -51,13 +49,17 @@ function CalculateRandomCode() {
     for (let i = 0; i < newStratagemLength; i++) {
         const index = Math.floor(Math.random() * 4);
         const direction = validCodes[index];
-        stratagemCode = stratagemCode.concat(direction);
+        correctInput = correctInput.concat(direction);
     }
 
-    CreateArrows(stratagemCode);  
+    newCodeSequence(correctInput);  
 }
 
-function CreateArrows(code) {
+function newCodeSequence(code) {
+    while (stratCode.firstChild) {
+        stratCode.removeChild(stratCode.lastChild);
+    }
+
     for (let i = 0; i < code.length; i++) {
         const arrowCopy = arrowTemplate.content.cloneNode(true);
         const arrow = arrowCopy.querySelector(".arrow");
@@ -91,7 +93,6 @@ function ResetStratagemInput() {
 
 let currentArrow = 0;
 stratInput.addEventListener('keyup', function (evt) {
-    console.log(stratInput.value);
 
     const keystroke = evt.key.toLowerCase();
     if (keystroke != 'w' && keystroke != 'a' && keystroke != 's' && keystroke != 'd') {
@@ -99,26 +100,24 @@ stratInput.addEventListener('keyup', function (evt) {
     }
 
     const inputLength = stratInput.value.length;
-    const codeLength = stratagemCode.length;
+    const codeLength = correctInput.length;
     if (inputLength >= codeLength) {
         evt.preventDefault();
     }
 
-    if (keystroke === stratagemCode.charAt(currentArrow)) {
+    if (keystroke === correctInput.charAt(currentArrow)) {
         arrowList[currentArrow].classList.add("arrow__state_correct");
         currentArrow++;
     } else {
         ResetStratagemInput();
     }
 
-    if (currentArrow === stratagemCode.length) {
+    if (currentArrow === correctInput.length) {
         ResetStratagemInput();
-        CalculateRandomCode();
+        getRandomStratagemFromJson();
     }
 });
 
 stratCode.addEventListener('click', function (evt) {
     stratInput.focus();
 });
-
-CalculateRandomCode();
