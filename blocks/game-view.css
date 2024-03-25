@@ -10,9 +10,17 @@
     margin: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-view__stratagem-icon {
+    height: 100px;
+    width: 100px;
 }
 
 .game-view__stratagem-code {
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
 }
