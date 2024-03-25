@@ -13,28 +13,16 @@
             "svg": "reinforce.svg"
         },
         {
-            "name": "SOS Beacon",
-            "type": "mission",
-            "code": "",
-            "svg": ""
-        },
-        {
             "name": "Hellbomb",
             "type": "mission",
             "code": "swaswdsw",
-            "svg": "hellbomb.svg"
-        },
-        {
-            "name": "Eagle Rearm",
-            "type": "mission",
-            "code": "",
-            "svg": "eagle-rearm.svg"
+            "svg": ""
         },
         {
             "name": "Orbital Precision Strike",
             "type": "mission",
             "code": "ddw",
-            "svg": "orbital-precision-strike.svg"
+            "svg": ""
         }
     ]
 }
