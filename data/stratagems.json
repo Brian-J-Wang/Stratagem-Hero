@@ -1,17 +1,40 @@
 {
-    "type": "module",
     "stratagems" : [
         {
-            "name": "resupply",
+            "name": "Resupply",
             "type": "mission",
             "code": "sswd",
             "svg": "resupply.svg"
         },
         {
-            "name": "reinforce",
+            "name": "Reinforce",
             "type": "mission",
             "code": "wsdaw",
             "svg": "reinforce.svg"
+        },
+        {
+            "name": "SOS Beacon",
+            "type": "mission",
+            "code": "",
+            "svg": ""
+        },
+        {
+            "name": "Hellbomb",
+            "type": "mission",
+            "code": "swaswdsw",
+            "svg": "hellbomb.svg"
+        },
+        {
+            "name": "Eagle Rearm",
+            "type": "mission",
+            "code": "",
+            "svg": "eagle-rearm.svg"
+        },
+        {
+            "name": "Orbital Precision Strike",
+            "type": "mission",
+            "code": "ddw",
+            "svg": "orbital-precision-strike.svg"
         }
     ]
 }
