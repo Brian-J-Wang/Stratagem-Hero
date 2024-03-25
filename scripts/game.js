@@ -6,16 +6,31 @@ const stratInput = gameview.querySelector(".game-view__input");
 
 const arrowTemplate = document.querySelector("#arrowTemplate");
 
-
-const stratagems = GetStratagemJson();
-async function GetStratagemJson() {
-    const response = await fetch("../data/stratagems.json");
+const stratJson = await getStratagemJson();
+async function getStratagemJson() {
+    const response = await fetch("https://brian-j-wang.github.io/Stratagem-Hero/data/stratagems.json");
     const json = await response.json();
-    console.log(json);
     return json;
 }
 
 let arrowList;                                                              //all arrow elements are here. Access them here to change their state.
+const stratagemIcon = gameview.querySelector(".game-view__stratagem-icon");
+const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
+getRandomStratagemFromJson();
+function getRandomStratagemFromJson() {
+    const stratagemID = Math.floor(Math.random() * stratJson.stratagems.length);
+    const stratagem = stratJson.stratagems[stratagemID];
+    const stratagemImage = getStratagemImage(stratagem.svg);
+    stratagemIcon.setAttribute("src", stratagemImage);
+}
+
+
+async function getStratagemImage(imageName) {
+    const path = stratagemImagePath.concat(imageName);
+    console.log(path);
+    const image = await fetch(path);
+    return image;
+}
 
 const minStratagemLength = 3;
 const maxStratagemLength = 8;
@@ -104,7 +119,6 @@ stratInput.addEventListener('keyup', function (evt) {
 
 stratCode.addEventListener('click', function (evt) {
     stratInput.focus();
-})
+});
 
-//game initialization
-CalculateRandomCode()
+CalculateRandomCode();
