@@ -63,7 +63,7 @@ function getStratagemImage(imageName) {
     let path;
 
     if (imageName === "") {
-        path = "../images/stratagems/stratagem-random.svg"
+        path = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/stratagem-random.svg"
     } else {
         path = stratagemImagePath.concat(imageName);
     }
