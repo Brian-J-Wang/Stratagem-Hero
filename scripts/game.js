@@ -18,7 +18,7 @@ const stratagemArray = [];
 const stratagemDisplayLength = 6;
 function createInitialStratagems() {
     for (let i = 0; i < stratagemDisplayLength; i++) {
-        const stratagem = getRandomStratagemFromJson();
+        const stratagem = RandomStratagem();
 
         stratagemArray.push(stratagem);
     }
@@ -54,18 +54,20 @@ function createStratagemCard(stratagemData) {
 const stratagemIcon = gameview.querySelector(".game-view__stratagem-icon");
 const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
 const stratagemName = gameview.querySelector(".game-view__stratagem-name");
-function getRandomStratagemFromJson() {
+function RandomStratagem() {
     const stratagemID = Math.floor(Math.random() * stratJson.stratagems.length);
     return stratJson.stratagems[stratagemID];
 }
 
 function getStratagemImage(imageName) {
     let path;
+
     if (imageName === "") {
         path = "../images/stratagems/stratagem-random.svg"
     } else {
         path = stratagemImagePath.concat(imageName);
     }
+
     return path;
 }
 
@@ -88,7 +90,7 @@ function nextCard() {
     secondCard.classList.remove("stratagem-card__position_not-first");
     arrowList = secondCard.querySelectorAll(".arrow");
 
-    const stratagem = getRandomStratagemFromJson()
+    const stratagem = RandomStratagem()
     const newCard = createStratagemCard(stratagem);
     newCard.querySelector(".stratagem-card").classList.add("stratagem-card__position_not-first");
     stratagemCards.append(newCard);
