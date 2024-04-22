@@ -3,9 +3,9 @@ import { Arrow } from "./arrow";
 const stratagemTemplate = document.querySelector("#stratagemTemplate");
 const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
 
-class StratgemLine {
+export default class StratagemCard {
     //icon is a relative path svg, code is represented with wasd.
-    constructor( {icon, code} ) {
+    constructor( icon = "stratagem-random.svg", code ) {
         this._icon = icon;
         this._code = code;
 
@@ -16,7 +16,8 @@ class StratgemLine {
     }
 
     _constructStratagem() {
-        this._cardIcon.setAttribute('src', this._icon);
+        const imagePath = stratagemImagePath.concat(this._icon);
+        this._cardIcon.setAttribute('src', imagePath);
 
         this.rootArrow = new Arrow(this._code[0]);
 

@@ -1,3 +1,5 @@
+import { StratagemCard } from "./stratagem-card";
+
 const gameview = document.querySelector(".game-view");
 const stratagemCards = document.querySelector(".game-view__content");
 const arrowTemplate = document.querySelector("#arrowTemplate");
@@ -18,8 +20,8 @@ const stratagemDisplayLength = 6;
 function createInitialStratagems() {
     for (let i = 0; i < stratagemDisplayLength; i++) {
         const stratagem = RandomStratagem();
-
-        stratagemArray.push(stratagem);
+        const stratagemCard = new StratagemCard(stratagem.svg, stratagem.code);
+        stratagemArray.push(stratagemCard);
     }
 
     for (let i = 0; i < stratagemArray.length; i++) {
