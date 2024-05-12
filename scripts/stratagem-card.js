@@ -1,4 +1,4 @@
-import { Arrow } from "./arrow";
+import Arrow from "./arrow.js";
 
 const stratagemTemplate = document.querySelector("#stratagemTemplate");
 const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
@@ -9,10 +9,10 @@ export default class StratagemCard {
         this._icon = icon;
         this._code = code;
 
-        this._element = stratagemTemplate.content.cloneNode(true);
-        this._cardIcon = this._element.querySelector(".stratagem-card__icon");
-        this._cardCode = this._element.querySelector(".stratagem-card__code");
-        _constructStratagem();
+        this._cardElement = stratagemTemplate.content.cloneNode(true);
+        this._cardIcon = this._cardElement.querySelector(".stratagem-card__icon");
+        this._cardCode = this._cardElement.querySelector(".stratagem-card__code");
+        this._constructStratagem();
     }
 
     _constructStratagem() {
@@ -27,14 +27,13 @@ export default class StratagemCard {
             const newArrow = new Arrow(this._code[i]);
             this._cardCode.append(currentArrow.getElement());
 
-            currentArrow.next = newArrow;
-            newArrow.backward = currentArrow; //Arrow.backward is likely not needed, remove on refactor if possible
+            currentArrow.setNext(newArrow);
             currentArrow = newArrow;
         }
     }
 
     getElement() {
-        return this._element;
+        return this._cardElement;
     }
 
     resetArrowState() {

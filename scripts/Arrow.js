@@ -1,22 +1,21 @@
 const arrowTemplate = document.querySelector("#arrowTemplate");
 //Json directions are stored in wasd format
-const directions = JSON.parse(await GetDirectionJson());
-async function getStratagemJson() {
-    const response = await fetch("https://brian-j-wang.github.io/Stratagem-Hero/data/directions.json");
-    return await response.json();
+const directions = {
+    w: "arrow__direction_up",
+    a: "arrow__direction_left",
+    s: "arrow__direction_down",
+    d: "arrow__direction_right"
 }
 
-export class Arrow {
-    //arrow classes that are either in front of or behind the class
-    //null values indicate first or last arrow
+export default class Arrow {
     next;
-    backward;
 
     //direction are passed by wasd
     constructor(direction) {
-        this._direction = direction;
+        this.next = null;
         this._element = arrowTemplate.content.cloneNode(true);
-        this._element.classList.add(directions[this._direction]);
+        this._arrowElement = this._element.querySelector('.arrow');
+        this._arrowElement.classList.add(directions[direction]);
     }
 
     getElement() {
@@ -24,10 +23,14 @@ export class Arrow {
     }
 
     addCorrectState() {
-        this._element.classList.add(".arrow__state_correct");
+        this._element.classList.add("arrow__state_correct");
     }
 
     removeCorrectState() {
-        this._element.classList.remove(".arrow__state_correct");
+        this._element.classList.remove("arrow__state_correct");
+    }
+
+    setNext(nextArrow) {
+        this.next = nextArrow;
     }
 }

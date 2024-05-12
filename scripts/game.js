@@ -1,4 +1,4 @@
-import { StratagemCard } from "./stratagem-card";
+import StratagemCard from "./stratagem-card.js";
 
 const gameview = document.querySelector(".game-view");
 const stratagemCards = document.querySelector(".game-view__content");
@@ -35,22 +35,6 @@ function createInitialStratagems() {
         stratagemCards.append(cardCopy);
     }
 }
-
-function createStratagemCard(stratagemData) {
-    const copy = stratagemTemplate.content.cloneNode(true);
-    
-    const stratagemIcon = copy.querySelector(".stratagem-card__icon");
-    stratagemIcon.setAttribute("src", getStratagemImage(stratagemData.svg));
-
-    const stratagemName = copy.querySelector(".stratagem-card__name");
-    stratagemName.innerText = stratagemData.name;
-
-    const stratagemInputCode = copy.querySelector(".stratagem-card__code");
-    createCodeSequence(stratagemInputCode, stratagemData.code);
-
-    return copy;
-}
-                                                             //all arrow elements are here. Access them here to change their state.
 
 const stratagemIcon = gameview.querySelector(".game-view__stratagem-icon");
 const stratagemImagePath = "https://brian-j-wang.github.io/Stratagem-Hero/images/stratagems/";
